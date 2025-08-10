@@ -34,37 +34,3 @@ class IsolationForestWrapper(mlflow.pyfunc.PythonModel):
             "anomaly": [1 if p == -1 else 0 for p in raw_preds]
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""import pandas as pd
-import joblib
-import mlflow.pyfunc
-
-
-class IsolationForestWrapper(mlflow.pyfunc.PythonModel):
-    def load_context(self, context):
-        self.model = joblib.load(context.artifacts["model_path"])
-
-    def predict(self, context, model_input):
-        # Ensure the input is a DataFrame (MLflow might pass it as a list of dicts)
-        if not isinstance(model_input, pd.DataFrame):
-            model_input = pd.DataFrame(model_input)
-
-        scores = self.model.decision_function(model_input)
-        raw_preds = self.model.predict(model_input)
-
-        return pd.DataFrame({
-            "anomaly_score": scores,
-            "anomaly": [1 if p == -1 else 0 for p in raw_preds]
-        })"""
